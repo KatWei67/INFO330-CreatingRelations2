@@ -10,3 +10,4 @@ CREATE TABLE pokemon(
   percentage_male REAL, pokedex_number INTEGER, sp_attack INTEGER,
   sp_defense INTEGER, speed INTEGER, type1 TEXT, type2 TEXT, weight_kg REAL,
   generation INTEGER, is_legendary INTEGER);
+  
