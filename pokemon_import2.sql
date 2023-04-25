@@ -23,7 +23,7 @@ INSERT INTO pokemon_2nf SELECT attack  , base_egg_steps  ,
   defense  , experience_growth  , height_m  , hp  , name  ,
   percentage_male  , pokedex_number  , sp_attack  ,
   sp_defense  , speed  , weight_kg  ,
-  generation  , is_legendary     FROM pokemon;
+  generation  , is_legendary     FROM imported_pokemon_data;
 
 --insert data to type table
 INSERT INTO type SELECT pokedex_number,type1, type2, against_bug, against_dark, against_dragon  , against_electric,
