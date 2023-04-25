@@ -1,38 +1,50 @@
---TO achieve 2NF, create pokemon_2NF, classfication, type1, type2 tables 
-CREATE TABLE pokemon_2NF(
-  against_bug REAL, against_dark REAL, against_dragon REAL, against_electric REAL,
-  against_fairy REAL, against_fight REAL, against_fire REAL, against_flying REAL,
-  against_ghost REAL, against_grass REAL, against_ground REAL, against_ice REAL,
-  against_normal REAL, against_poison REAL, against_psychic REAL, against_rock REAL,
-  against_steel REAL, against_water REAL, attack INTEGER, base_egg_steps INTEGER,
-  base_happiness INTEGER, base_total INTEGER, capture_rate INTEGER,
+
+
+--TO achieve 2NF, create pokemon_2nf and type tables 
+CREATE TABLE pokemon_2nf(
+  attack INTEGER, base_egg_steps INTEGER,
+  base_happiness INTEGER, base_total INTEGER, capture_rate INTEGER,classification TEXT,
   defense INTEGER, experience_growth INTEGER, height_m REAL, hp INTEGER, name TEXT,
   percentage_male REAL, pokedex_number INTEGER, sp_attack INTEGER,
   sp_defense INTEGER, speed INTEGER, weight_kg REAL,
-  generation INTEGER, is_legendary INTEGER);
- 
-CREATE TABLE classfication(pokedex_number INTEGER, classfication TEXT);
+  generation INTEGER, is_legendary INTEGER); 
 
-CREATE TABLE type1(pokedex_number INTEGER, type1 TEXT);
+-- against_x data depends on type1 and ype2 together, so creeate a type table, here type_id is equvalent to pokedex_number in pokemon_2nf table
+CREATE TABLE type(type_id INTEGER, type1 TEXT, type2 TEXT, against_bug REAL, against_dark REAL, against_dragon REAL, against_electric REAL,
+  against_fairy REAL, against_fight REAL, against_fire REAL, against_flying REAL,
+  against_ghost REAL, against_grass REAL, against_ground REAL, against_ice REAL,
+  against_normal REAL, against_poison REAL, against_psychic REAL, against_rock REAL,
+  against_steel REAL, against_water REAL);
 
-CREATE TABLE type2(pokedex_number INTEGER, type2 TEXT);
 
---INSERT data
-INSERT INTO pokemon_2NF SELECT against_bug, against_dark  , against_dragon  , against_electric  ,
+--INSERT data to pokemon_2nf table
+INSERT INTO pokemon_2nf SELECT attack  , base_egg_steps  ,
+  base_happiness  , base_total  , capture_rate  ,classification  ,
+  defense  , experience_growth  , height_m  , hp  , name  ,
+  percentage_male  , pokedex_number  , sp_attack  ,
+  sp_defense  , speed  , weight_kg  ,
+  generation  , is_legendary     FROM pokemon;
+
+--insert data to type table
+INSERT INTO type SELECT pokedex_number,type1, type2, against_bug, against_dark, against_dragon  , against_electric,
   against_fairy  , against_fight  , against_fire  , against_flying  ,
   against_ghost  , against_grass  , against_ground  , against_ice  ,
   against_normal  , against_poison  , against_psychic  , against_rock  ,
-  against_steel  , against_water  , attack  , base_egg_steps  ,
-  base_happiness  , base_total  , capture_rate  ,
-  defense  , experience_growth  , height_m  , hp  , name  ,
-  percentage_male  , pokedex_number  , sp_attack  ,
-  sp_defense  , speed  ,  weight_kg  ,
-  generation  , is_legendary   FROM pokemon
-  
-INSERT INTO classfication(pokedex_number, classfication) SELECT pokedex_number, classfication FROM imported_pokemon_data;
+  against_steel  , against_water   FROM imported_pokemon_data;
 
-INSERT INTO type1(pokedex_number, type1) SELECT pokedex_number, type1 FROM imported_pokemon_data;
 
-INSERT INTO type2(pokedex_number, type2) SELECT pokedex_number, type1 FROM imported_pokemon_data;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
