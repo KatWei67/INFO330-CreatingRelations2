@@ -57,4 +57,4 @@ INSERT INTO pokemon_1NF SELECT against_bug, against_dark  , against_dragon  , ag
   defense  , experience_growth  , height_m  , hp  , name  ,
   percentage_male  , pokedex_number  , sp_attack  ,
   sp_defense  , speed  , type1  , type2  , weight_kg  ,
-  generation  , is_legendary   FROM pokemon
+  generation  , is_legendary   FROM imported_pokemon_data;
